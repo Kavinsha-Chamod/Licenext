@@ -7,6 +7,7 @@ import LoginPage from '../pages/LoginPage'
 import FirstLoginPage from '../pages/FirstLoginPage'
 import Dashboard from '../pages/Dashboard'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
+import FingerprintPage from '../pages/FingerprintPage'
 
 const Stack = createNativeStackNavigator()
 const AppNavigator = () => {
@@ -18,6 +19,7 @@ const AppNavigator = () => {
         <Stack.Screen name='firstLogin' component={FirstLoginPage}/>
         <Stack.Screen name='forgotPassword' component={ForgotPasswordPage}/>
         <Stack.Screen name='dashboard' component={Dashboard}/>
+        <Stack.Screen name='fingerprint' component={FingerprintPage}/>
 
       </Stack.Navigator>
     </NavigationContainer>

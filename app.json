@@ -4,7 +4,7 @@
     "slug": "Licenext",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LogoSmall.png",
+    "icon": "./assets/Splash.png",
     "userInterfaceStyle": "dark",
     "assetBundlePatterns": [
       "**/*"
@@ -14,12 +14,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoSmall.png",
+        "foregroundImage": "./assets/Splash.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/LogoSmall.png"
+      "favicon": "./assets/Splash.png"
     }
   }
 }
