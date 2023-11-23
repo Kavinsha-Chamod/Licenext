@@ -17,7 +17,7 @@ const LoginPage = () => {
     // Navigation.navigate("firstLogin");
     const lastNineChars = password.slice(-9);
     var answer = await login(username,password);
-   
+   //sha
     if( answer === "go to home" && lastNineChars === "@slpolice")
     {
       Navigation.navigate("firstLogin");
