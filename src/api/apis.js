@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useNavigation } from "@react-navigation/native";
+//import { useNavigation } from "@react-navigation/native";
 
     const login = async (username, password) => {
       try {
-        const response = await axios.post('http://192.168.8.155:5000/login', {
+        const response = await axios.post('http://192.168.43.181:5000/login', {
           username: username,
           password: password,
         });
@@ -28,7 +28,7 @@ const firstregister = async (usernamex,passwordx,emailx) =>
   }
   try
   {
-    const response = await axios.put(`http://192.168.8.155:5000/update`, updatedData);
+    const response = await axios.put(`http://192.168.43.181:5000/update`, updatedData);
     if (response.status === 200) {
       console.log('User details updated successfully:', response.data);
     } else {
@@ -41,7 +41,21 @@ const firstregister = async (usernamex,passwordx,emailx) =>
   }
 }
 
+const checkdriver = async (id) =>
+{
+  try {
+    const response = await axios.post('http://192.168.43.181:5000/check', {
+      nic:id,
+    });
+    console.log('Login response:', response.data);
+    return response.data;
+  } catch (error) {
+    // Handle errors
+    console.error(error);
+    throw error;
+  }
+}
 
 
-export {login,firstregister}
+export {login,firstregister,checkdriver}
 

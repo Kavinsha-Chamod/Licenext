@@ -1,8 +1,13 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
 import CustomSmallButton from '../components/customSmallButton'
+import { useRoute } from "@react-navigation/native";
 
-const ELicensePage = () => {
+const ELicensePage = () => 
+{
+  const route = useRoute();
+  const url = route.params?.urlx;
+  console.log()
   return (
     <View style={styles.container}>
      <View>
@@ -24,10 +29,10 @@ const ELicensePage = () => {
         />
       </View>
       <View style={styles.licenseFront}>
-        <Image
-          source={require("../assets/images/license.png")}
-          style={styles.license}
-        />
+      <Image
+        source={{ uri: url }}
+        style={styles.license}
+      />
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>Status -</Text>

@@ -36,7 +36,7 @@ const FirstLoginPage = () => {
     }
     else if(cpassword === currentPassword && password === confirmPassword && lastNineChars !== "@slpolice")
       {
-    Navigation.navigate("dashboard");
+    Navigation.navigate("dashboard",{usernamey:username});
     firstregister(username,password,email);
     console.log("username", username);
     console.log("Email:", email);

@@ -6,15 +6,32 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
+import moment from 'moment';
 
 const Dashboard = () => {
   const Navigation = useNavigation();
-
+  const route = useRoute();
+  const officerID= route.params?.usernamey;
   const handleLicense = () => {
     Navigation.navigate("fingerprint");
   };
+//------------------------------------------
+
+const [currentTime, setCurrentTime] = useState(moment().format('HH:mm:ss'));
+
+useEffect(() => {
+  const intervalId = setInterval(() => {
+    setCurrentTime(moment().format('HH:mm:ss'));
+  }, 1000); // Update every second
+
+  // Clear interval on component unmount
+  return () => clearInterval(intervalId);
+}, []);
+
+//------------------------------------------
   return (
     <View style={styles.Container}>
       <View style={styles.Circle}>
@@ -36,8 +53,8 @@ const Dashboard = () => {
         />
       </View>
       <View style={styles.rectangle}>
-        <Text style={styles.time}>Time</Text>
-        <Text style={styles.officerID}>Officer ID</Text>
+        <Text style={styles.time}>{currentTime}</Text>
+        <Text style={styles.officerID}>Officer ID {"\n"}  {officerID}</Text>
       </View>
       <View style={styles.line}></View>
 

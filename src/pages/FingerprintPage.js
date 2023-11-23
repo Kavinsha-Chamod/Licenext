@@ -10,20 +10,22 @@ import Modal from "react-native-modal";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
 import CustomButton from "../components/customButton";
+import {checkdriver} from "../api/apis";
 
 const FingerprintPage = () => {
   const Navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [nic, setNic] = useState("");
-
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  const verifyNIC = () => {
-     Navigation.navigate("e-license");
+  const verifyNIC = async () => {
+    //  Navigation.navigate("e-license");
     // Add your logic to check NIC details here
     // For example, you can log the NIC to the console
-
+    var url = await checkdriver(nic);
+    Navigation.navigate("e-license",{urlx:url});
     console.log("Checking NIC details:", nic);
     toggleModal();
   };

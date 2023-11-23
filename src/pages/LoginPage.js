@@ -26,7 +26,7 @@ const LoginPage = () => {
     }
     else if (answer === "go to home" && lastNineChars !== "@slpolice")
     {
-      Navigation.navigate("dashboard");
+      Navigation.navigate("dashboard",{usernamey:username});
     }
     else if( answer === "wrong password" || answer === "user name cannot be found")
     {
