@@ -1,21 +1,43 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity, Alert  } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
 import {heightPercentageToDP,widthPercentageToDP} from "react-native-responsive-screen";
 import { CheckBox } from "react-native-elements";
 import CustomButton from "../components/customButton";
+import {login} from "../api/apis"
 
 const LoginPage = () => {
   const Navigation = useNavigation();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    Navigation.navigate("firstLogin");
-
+  const handleLogin  = async () => {
+    // Navigation.navigate("firstLogin");
+    const lastNineChars = password.slice(-9);
+    var answer = await login(username,password);
+   
+    if( answer === "go to home" && lastNineChars === "@slpolice")
+    {
+      Navigation.navigate("firstLogin");
+    }
+    else if (answer === "go to home" && lastNineChars !== "@slpolice")
+    {
+      Navigation.navigate("dashboard");
+    }
+    else if( answer === "wrong password" || answer === "user name cannot be found")
+    {
+      //designe for handle error------
+          
+      //--------end of error design---
+    }
+    const passedVariable = 
+    {
+      Username:username,
+      Password:password,
+    }
+    setpassvariable1(passedVariable);
     console.log("Username:", username);
     console.log("Password:", password);
     console.log("Remember Me:", rememberMe);
@@ -85,7 +107,7 @@ const LoginPage = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.btnContainer}>
-        <CustomButton buttonText={"Login"} buttonFunction={handleLogin} />
+        <CustomButton buttonText={"Login"} buttonFunction={handleLogin}  />
       </View>
     </View>
   );
