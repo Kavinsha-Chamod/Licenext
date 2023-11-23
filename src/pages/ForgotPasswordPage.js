@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/customButton";
@@ -6,6 +13,11 @@ import CustomButton from "../components/customButton";
 const ForgotPasswordPage = () => {
   const Navigation = useNavigation();
   const [email, setEmail] = useState("");
+
+  const handleVerify = () => {
+    Navigation.navigate("login");
+    
+  };
   return (
     <View style={styles.Container}>
       <View style={styles.Circle}>
@@ -40,19 +52,21 @@ const ForgotPasswordPage = () => {
         </Text>
       </View>
       <View style={styles.CodeNum}>
-        <View style={styles.rectangle}></View>
-        <View style={styles.rectangle}></View>
-        <View style={styles.rectangle}></View>
-        <View style={styles.rectangle}></View>
-        <TextInput style={styles.rectangle}/>
+        <TextInput style={styles.rectangle} />
+        <TextInput style={styles.rectangle} />
+        <TextInput style={styles.rectangle} />
+        <TextInput style={styles.rectangle} />
       </View>
       <View>
-      <Text style={styles.text1}>
-          If you didn't receive a code, <TouchableOpacity><Text style={styles.text2}>Resend</Text></TouchableOpacity>
+        <Text style={styles.text1}>
+          If you didn't receive a code,{" "}
+          <TouchableOpacity>
+            <Text style={styles.text2}>Resend</Text>
+          </TouchableOpacity>
         </Text>
       </View>
       <View style={styles.btnContainer}>
-        <CustomButton buttonText={"Verify"} buttonFunction={""} />
+        <CustomButton buttonText={"Verify"} buttonFunction={handleVerify} />
       </View>
     </View>
   );
@@ -126,36 +140,39 @@ const styles = StyleSheet.create({
   rectangle: {
     width: 60,
     height: 60,
-    justifyContent:'center',
+    justifyContent: "center",
     backgroundColor: "#fff",
     borderRadius: 25,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
+    fontWeight:"bold",
+    fontSize:20,
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 5,
     margin: 5,
     padding: 10,
+    alignItems:"center",
+    paddingLeft:22
   },
   CodeNum: {
-    flexDirection: 'row',
-    top:30,
+    flexDirection: "row",
+    top: 30,
+    alignItems:"center",
   },
   text1: {
     fontFamily: "Poppins",
     fontSize: 14,
-    color:"#0C4271",
-    top:40
-
+    color: "#0C4271",
+    top: 40,
   },
-  text2:{
+  text2: {
     fontFamily: "Poppins",
     fontSize: 14,
-    color:"#3876BF",
-    top:2
+    color: "#3876BF",
+    top: 2,
   },
   btnContainer: {
     top: 70,
   },
 });
-
