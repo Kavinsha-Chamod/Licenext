@@ -4,20 +4,50 @@ import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/customButton";
 import CustomTextField from "../components/customTextField";
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import { firstregister } from '../api/apis';
+import { useRoute } from "@react-navigation/native";
 
 const FirstLoginPage = () => {
+  const route = useRoute();
   const Navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+  const username = route.params?.usernamex;
+  const cpassword = route.params?.currentpasswordx;
 
   const handleLogin = () => {
+    const lastNineChars = password.slice(-9);
+    if(cpassword !== currentPassword)
+    {
+      //--Kavinsha
+      console.log("current password is not correct");
+    }
+    else if( password !== confirmPassword)
+    {
+      //--kavinsha
+      console.log("passwords are not matching");
+    }
+    else if(lastNineChars === "@slpolice")
+    {
+      //--kavinsha
+      console.log("please change last 9 charcters in password this password is not compatibal with system");
+    }
+    else if(cpassword === currentPassword && password === confirmPassword && lastNineChars !== "@slpolice")
+      {
     Navigation.navigate("dashboard");
-
+    firstregister(username,password,email);
+    console.log("username", username);
     console.log("Email:", email);
     console.log("CurrentPassword:", currentPassword);
     console.log("Password:", password);
+    console.log("you have successfully updated your account");
+      }
+      else
+      {
+        console.log("Unknown error occured");
+      }
   };
   return (
     <View style={styles.container}>
@@ -49,7 +79,7 @@ const FirstLoginPage = () => {
         <CustomTextField
           placeholder={"Enter your mail address"}
           value={email}
-          onChangeText={(text) => setUsername(text)}
+          onChangeText={(text) => setEmail(text)}
         />
         <Image
           style={styles.Image}
@@ -60,7 +90,7 @@ const FirstLoginPage = () => {
         <CustomTextField
           placeholder={"Enter Current password"}
           value={currentPassword}
-          onChangeText={(text) => setpassword(text)}
+          onChangeText={(text) => setCurrentPassword(text)}
           secureTextEntry
         />
         <Image
@@ -84,7 +114,7 @@ const FirstLoginPage = () => {
         <CustomTextField
           placeholder={"Confirm password"}
           value={confirmPassword}
-          onChangeText={(text) => setpassword(text)}
+          onChangeText={(text) => setconfirmPassword(text)}
           secureTextEntry
         />
         <Image
