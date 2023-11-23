@@ -7,12 +7,12 @@ import { CheckBox } from "react-native-elements";
 import CustomButton from "../components/customButton";
 import {login} from "../api/apis"
 
+
 const LoginPage = () => {
   const Navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-
   const handleLogin  = async () => {
     // Navigation.navigate("firstLogin");
     const lastNineChars = password.slice(-9);
@@ -20,7 +20,10 @@ const LoginPage = () => {
    //sha
     if( answer === "go to home" && lastNineChars === "@slpolice")
     {
-      Navigation.navigate("firstLogin");
+      Navigation.navigate("firstLogin",{
+        usernamex:username,
+        currentpasswordx:password
+      });
     }
     else if (answer === "go to home" && lastNineChars !== "@slpolice")
     {
@@ -28,7 +31,7 @@ const LoginPage = () => {
     }
     else if( answer === "wrong password" || answer === "user name cannot be found")
     {
-      //designe for handle error------
+      //designe for handle error------//Kavinsha
           
       //--------end of error design---
     }
@@ -37,7 +40,7 @@ const LoginPage = () => {
       Username:username,
       Password:password,
     }
-    setpassvariable1(passedVariable);
+   
     console.log("Username:", username);
     console.log("Password:", password);
     console.log("Remember Me:", rememberMe);
