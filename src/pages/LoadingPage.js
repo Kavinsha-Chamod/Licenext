@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, ActivityIndicator, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
-
+//sha
 const LoadingPage = () => {
   const Navigation = useNavigation();
   const [isLoading, setIsLoading] = useState(true);

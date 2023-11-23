@@ -7,7 +7,7 @@ export default function App() {
     Poppins: require("./src/assets/fonts/Poppins-Regular.ttf"),
     Montserrat: require("./src/assets/fonts/Montserrat-VariableFont_wght.ttf"),
   });
-
+//sha
   if (!loaded) {
     return null;
   }
