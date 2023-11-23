@@ -25,14 +25,7 @@ const ELicensePage = () => {
       </View>
       <View style={styles.licenseFront}>
         <Image
-          source={require("../assets/images/licenseFront.png")}
-          style={styles.license}
-        />
-        
-      </View>
-      <View style={styles.licenseBack}>
-      <Image
-          source={require("../assets/images/licenseBack.png")}
+          source={require("../assets/images/license.png")}
           style={styles.license}
         />
       </View>
@@ -92,14 +85,8 @@ const styles = StyleSheet.create({
   licenseFront: {
     position: "absolute",
     resizeMode: "contain",
-    top: 100,
-    left:15,
-  },
-  licenseBack:{
-    position: "absolute",
-    resizeMode: "contain",
-    top: 320,
-    left: 15,
+    top: 160,
+    
   },
   logo: {
     width: 250,
@@ -107,8 +94,8 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   license:{
-    width: 350,
-    height: 350,
+    width: 450,
+    height: 450,
     resizeMode: "contain",
   },
   textContainer: {

@@ -35,7 +35,10 @@ const Dashboard = () => {
           style={styles.imageD}
         />
       </View>
-      <View style={styles.rectangle}></View>
+      <View style={styles.rectangle}>
+        <Text style={styles.time}>Time</Text>
+        <Text style={styles.officerID}>Officer ID</Text>
+      </View>
       <View style={styles.line}></View>
 
       <View>
@@ -143,5 +146,17 @@ const styles = StyleSheet.create({
     width: 290,
     height: 60,
     resizeMode: "contain",
+  },
+  time:{
+   fontSize:24,
+   fontWeight:"bold",
+   left:210,
+   top:25
+  },
+  officerID:{
+    fontSize:16,
+    fontWeight:"bold",
+    left:10,
+    bottom:10
   },
 });
