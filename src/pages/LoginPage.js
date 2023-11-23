@@ -1,45 +1,49 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Alert  } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
-import {heightPercentageToDP,widthPercentageToDP} from "react-native-responsive-screen";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import { CheckBox } from "react-native-elements";
 import CustomButton from "../components/customButton";
-import {login} from "../api/apis"
+import CustomSmallButton from "../components/customSmallButton";
+import { login } from "../api/apis";
+import Modal from "react-native-modal";
 
 const LoginPage = () => {
   const Navigation = useNavigation();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const handleLogin  = async () => {
-    // Navigation.navigate("firstLogin");
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
+
+  const handleLogin = async () => {
     const lastNineChars = password.slice(-9);
-    var answer = await login(username,password);
-   //sha
-    if( answer === "go to home" && lastNineChars === "@slpolice")
-    {
-      Navigation.navigate("firstLogin",{
-        usernamex:username,
-        currentpasswordx:password
+    var answer = await login(username, password);
+
+    if (answer === "go to home" && lastNineChars === "@slpolice") {
+      Navigation.navigate("firstLogin", {
+        usernamex: username,
+        currentpasswordx: password,
       });
     }
     else if (answer === "go to home" && lastNineChars !== "@slpolice")
     {
       Navigation.navigate("dashboard",{usernamey:username});
+    } else if (
+      answer === "wrong password" ||
+      answer === "user name cannot be found"
+    ) {
+      setIsErrorModalVisible(true);
+      console.log("login failed");
     }
-    else if( answer === "wrong password" || answer === "user name cannot be found")
-    {
-      //designe for handle error------//Kavinsha
-          console.log("login failed");
-      //--------end of error design---
-    }
-    const passedVariable = 
-    {
-      Username:username,
-      Password:password,
-    }
-   
+    const passedVariable = {
+      Username: username,
+      Password: password,
+    };
+
     console.log("Username:", username);
     console.log("Password:", password);
     console.log("Remember Me:", rememberMe);
@@ -51,6 +55,9 @@ const LoginPage = () => {
 
   const handleResetPassword = () => {
     Navigation.navigate("forgotPassword");
+  };
+  const closeErrorModal = () => {
+    setIsErrorModalVisible(false);
   };
 
   return (
@@ -110,6 +117,15 @@ const LoginPage = () => {
       </View>
       <View style={styles.btnContainer}>
         <CustomButton buttonText={"Login"} buttonFunction={handleLogin} />
+      </View>
+      <View>
+        <Modal isVisible={isErrorModalVisible}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.errorMsg}>Error !{"\n"}
+              Invalid username or password</Text>
+              <CustomSmallButton buttonText={"Ok"} buttonFunction={closeErrorModal}/>
+          </View>
+        </Modal>
       </View>
     </View>
   );
@@ -200,5 +216,14 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     bottom: 40,
+  },
+  alertContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+  errorMsg: {
+   fontFamily:'Poppins',
+   alignItems:'center'
   },
 });
