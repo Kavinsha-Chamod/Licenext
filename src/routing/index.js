@@ -9,6 +9,8 @@ import Dashboard from '../pages/Dashboard'
 import ForgotPasswordPage from '../pages/ForgotPasswordPage'
 import FingerprintPage from '../pages/FingerprintPage'
 import ELicensePage from '../pages/ELicensePage'
+import ReasonPage from '../pages/ReasonPage'
+import StatusHistoryPage from '../pages/StatusHistoryPage'
 
 const Stack = createNativeStackNavigator()
 const AppNavigator = () => {
@@ -22,7 +24,8 @@ const AppNavigator = () => {
         <Stack.Screen name='dashboard' component={Dashboard}/>
         <Stack.Screen name='fingerprint' component={FingerprintPage}/>
         <Stack.Screen name='e-license' component={ELicensePage}/>
-
+        <Stack.Screen name="reason" component={ReasonPage}/>
+        <Stack.Screen name="historyPage" component={StatusHistoryPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

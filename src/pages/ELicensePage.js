@@ -46,7 +46,7 @@ const ELicensePage = () =>
   )
 }
 
-export default ELicensePage
+export default ELicensePage;
 
 const styles = StyleSheet.create({
   container: {

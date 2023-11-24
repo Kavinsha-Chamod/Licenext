@@ -6,32 +6,32 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useRoute } from "@react-navigation/native";
-import moment from 'moment';
+import moment from "moment";
 
 const Dashboard = () => {
   const Navigation = useNavigation();
   const route = useRoute();
-  const officerID= route.params?.usernamey;
+  const officerID = route.params?.usernamey;
   const handleLicense = () => {
     Navigation.navigate("fingerprint");
   };
-//------------------------------------------
+  //------------------------------------------
 
-const [currentTime, setCurrentTime] = useState(moment().format('HH:mm:ss'));
+  const [currentTime, setCurrentTime] = useState(moment().format("HH:mm"));
 
-useEffect(() => {
-  const intervalId = setInterval(() => {
-    setCurrentTime(moment().format('HH:mm:ss'));
-  }, 1000); // Update every second
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentTime(moment().format("HH:mm"));
+    }, 1000); // Update every second
 
-  // Clear interval on component unmount
-  return () => clearInterval(intervalId);
-}, []);
+    // Clear interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
 
-//------------------------------------------
+  //------------------------------------------
   return (
     <View style={styles.Container}>
       <View style={styles.Circle}>
@@ -54,10 +54,11 @@ useEffect(() => {
       </View>
       <View style={styles.rectangle}>
         <Text style={styles.time}>{currentTime}</Text>
-        <Text style={styles.officerID}>Officer ID {"\n"}  {officerID}</Text>
+        <Text style={styles.officerID}>
+          Officer ID {"\n"} {officerID}
+        </Text>
       </View>
       <View style={styles.line}></View>
-
       <View>
         <TouchableOpacity onPress={handleLicense}>
           <View style={styles.licenceBox}>
@@ -164,16 +165,20 @@ const styles = StyleSheet.create({
     height: 60,
     resizeMode: "contain",
   },
-  time:{
-   fontSize:24,
-   fontWeight:"bold",
-   left:210,
-   top:25
+  time: {
+    fontSize: 42,
+    fontWeight: "bold",
+    left: 170,
+    top: 15,
+    color: 'black',
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: { width: 2, height: 2 },
+    textShadowRadius: 5,
   },
-  officerID:{
-    fontSize:16,
-    fontWeight:"bold",
-    left:10,
-    bottom:10
+  officerID: {
+    fontSize: 16,
+    fontWeight: "bold",
+    left: 10,
+    bottom: 28,
   },
 });

@@ -28,10 +28,8 @@ const LoginPage = () => {
         usernamex: username,
         currentpasswordx: password,
       });
-    }
-    else if (answer === "go to home" && lastNineChars !== "@slpolice")
-    {
-      Navigation.navigate("dashboard",{usernamey:username});
+    } else if (answer === "go to home" && lastNineChars !== "@slpolice") {
+      Navigation.navigate("dashboard", { usernamey: username });
     } else if (
       answer === "wrong password" ||
       answer === "user name cannot be found"
@@ -121,9 +119,15 @@ const LoginPage = () => {
       <View>
         <Modal isVisible={isErrorModalVisible}>
           <View style={styles.alertContainer}>
-            <Text style={styles.errorMsg}>Error !{"\n"}
-              Invalid username or password</Text>
-              <CustomSmallButton buttonText={"Ok"} buttonFunction={closeErrorModal}/>
+            <Text style={styles.errorMsg}>
+              {"\n"}                      ERROR !{"\n"}
+              <Text style={styles.errormsg}>Invalid username or password</Text>
+            </Text><View style={styles.msgOK}>
+            <CustomSmallButton
+              buttonText={"Ok"}
+              buttonFunction={closeErrorModal}
+            />
+            </View>
           </View>
         </Modal>
       </View>
@@ -220,10 +224,21 @@ const styles = StyleSheet.create({
   alertContainer: {
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#D9D9D9",
+    height:160,
+    borderRadius:40,
   },
   errorMsg: {
-   fontFamily:'Poppins',
-   alignItems:'center'
+    fontFamily: "Poppins",
+    alignItems: "center",
+    fontSize:18,
+    bottom:13,
+    color:"red"
   },
+  msgOK: {
+    bottom:5,
+  },
+  errormsg: {
+color:"black"
+  }
 });
