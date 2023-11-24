@@ -25,9 +25,18 @@ const FingerprintPage = () => {
     // Add your logic to check NIC details here
     // For example, you can log the NIC to the console
     var url = await checkdriver(nic);
+    if(url==="user not existing in system")
+    {
+      //kavinsha
+      console.log(url);
+    }
+    else
+    {
     Navigation.navigate("e-license",{urlx:url});
     console.log("Checking NIC details:", nic);
     toggleModal();
+     }
+   
   };
 
   const renderModalContent = () => (

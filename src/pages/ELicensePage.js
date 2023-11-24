@@ -1,14 +1,68 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import CustomSmallButton from '../components/customSmallButton'
+import CustomCancelButton from '../components/customCancelButton';
 import { useRoute } from "@react-navigation/native";
+import Modal from "react-native-modal";
 
 const ELicensePage = () => 
 {
   const route = useRoute();
   const url = route.params?.urlx;
-  console.log(url.image);
+  console.log(url.image); 
   console.log(url);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible1, setModalVisible1] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const toggleModal1 = () => {
+    setModalVisible1(!isModalVisible1);
+  };
+
+  const verifyButton = async () => {
+    toggleModal();
+  }
+  const UnblockButton = async () => {
+    toggleModal1();
+  }
+
+  const handleCancel = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const renderModalContent = () => (
+    <View style={styles.modalContainer}>
+      <View>
+        <Text style={styles.modaltext1}>
+          Are you sure you want <Text style={styles.blkColor}>BLOCK</Text>
+          {"\n"}                 the card ?
+        </Text>
+      </View>
+      <View style={styles.btnblk}>
+        <CustomSmallButton buttonText={"Block Card"} buttonFunction={""}/>
+        <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleCancel}/>
+      </View>
+    </View>
+  );
+
+  const renderCancelModalContent = () => (
+    <View style={styles.modalContainer}>
+      <View>
+        <Text style={styles.modaltext1}>
+          Are you sure you want <Text style={styles.unblkColor}>UNBLOCK</Text>
+          {"\n"}                    the card ?
+        </Text>
+      </View>
+      <View style={styles.btnblk}>
+        <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={""}/>
+        <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleCancel}/>
+      </View>
+    </View>
+  );
+ 
   return (
     <View style={styles.container}>
      <View>
@@ -39,8 +93,24 @@ const ELicensePage = () =>
         <Text style={styles.text}>Status -{url.validity}</Text>
       </View>
       <View style={styles.btn}>
-        <CustomSmallButton style={styles.btnCheck} buttonText={"Block Card"}/>
-        <CustomSmallButton buttonText={"Unblock Card"}/>
+        <CustomSmallButton style={styles.btnCheck} buttonText={"Block Card"} buttonFunction={verifyButton} onPress={toggleModal}/>
+        <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={toggleModal}
+        onBackButtonPress={toggleModal}
+      >
+        {renderModalContent()}
+      </Modal>
+      <View>
+      <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={UnblockButton} onPress={toggleModal}/>
+      <Modal
+        isVisible={isModalVisible1}
+        onBackdropPress={toggleModal1}
+        onBackButtonPress={toggleModal1}
+      >
+        {renderCancelModalContent()}
+      </Modal>
+      </View>
       </View>
     </View>
   )
@@ -118,4 +188,29 @@ const styles = StyleSheet.create({
     alignItems:"center",
     top:260,
   },
+  modaltext1: {
+    fontFamily: "Poppins",
+    fontSize: 22,
+    bottom:120,
+  },
+  modalContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F6F6F6",
+    borderRadius: 60,
+    height: 450,
+    top: 400,
+    width: 380,
+    right: 20,
+  },
+  btnblk:{
+    bottom:100,
+    flexDirection: "row",
+  },
+  blkColor:{
+    color:"#1AB700"
+  },
+  unblkColor: {
+    color:"red",
+  }
 })
