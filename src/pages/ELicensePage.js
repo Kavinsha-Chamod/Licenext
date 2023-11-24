@@ -7,7 +7,8 @@ const ELicensePage = () =>
 {
   const route = useRoute();
   const url = route.params?.urlx;
-  console.log()
+  console.log(url.image);
+  console.log(url);
   return (
     <View style={styles.container}>
      <View>
@@ -30,12 +31,12 @@ const ELicensePage = () =>
       </View>
       <View style={styles.licenseFront}>
       <Image
-        source={{ uri: url }}
+        source={{ uri: url.image }}
         style={styles.license}
       />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Status -</Text>
+        <Text style={styles.text}>Status -{url.validity}</Text>
       </View>
       <View style={styles.btn}>
         <CustomSmallButton style={styles.btnCheck} buttonText={"Block Card"}/>
