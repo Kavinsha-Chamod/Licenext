@@ -10,24 +10,33 @@ import Modal from "react-native-modal";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
 import CustomButton from "../components/customButton";
+import CustomSmallButton from "../components/customSmallButton";
 import {checkdriver} from "../api/apis";
 
 const FingerprintPage = () => {
   const Navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [nic, setNic] = useState("");
+  const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
   
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const camera = () =>{
+    Navigation.navigate("open");
+  };
+
+  const closeErrorModal = () => {
+    setIsErrorModalVisible(false);
+  };
+
   const verifyNIC = async () => {
-    //  Navigation.navigate("e-license");
-    // Add your logic to check NIC details here
-    // For example, you can log the NIC to the console
+   
     var url = await checkdriver(nic);
     if(url==="user not existing in system")
     {
-      //kavinsha
+      setIsErrorModalVisible(true);
       console.log(url);
     }
     else
@@ -81,10 +90,12 @@ const FingerprintPage = () => {
         </Text>
       </View>
       <View>
+        <TouchableOpacity onPress={camera}>
         <Image
           source={require("../assets/images/FPicon.png")}
           style={styles.image}
         />
+        </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity onPress={toggleModal}>
@@ -98,6 +109,21 @@ const FingerprintPage = () => {
       >
         {renderModalContent()}
       </Modal>
+      <View>
+        <Modal isVisible={isErrorModalVisible}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.errorMsg}>
+              {"\n"}            ERROR !{"\n"}
+              <Text style={styles.errormsg}>Invalid NIC Number</Text>
+            </Text><View style={styles.msgOK}>
+            <CustomSmallButton
+              buttonText={"Ok"}
+              buttonFunction={closeErrorModal}
+            />
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 };
@@ -203,4 +229,24 @@ const styles = StyleSheet.create({
   btnCheck:{
 bottom:35
   },
+  alertContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#D9D9D9",
+    height:160,
+    borderRadius:40,
+  },
+  errorMsg: {
+    fontFamily: "Poppins",
+    alignItems: "center",
+    fontSize:18,
+    bottom:13,
+    color:"red"
+  },
+  msgOK: {
+    bottom:5,
+  },
+  errormsg: {
+color:"black"
+  }
 });

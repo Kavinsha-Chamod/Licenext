@@ -29,6 +29,7 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-media-query": "^2.0.1",
     "react-native-modal": "^13.0.1",
+    "react-native-qrcode-scanner": "^1.5.5",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-web": "~0.19.6",
     "expo-camera": "~13.4.4",
