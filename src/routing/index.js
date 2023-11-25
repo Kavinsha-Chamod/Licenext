@@ -11,14 +11,18 @@ import FingerprintPage from '../pages/FingerprintPage'
 import ELicensePage from '../pages/ELicensePage'
 import ReasonPage from '../pages/ReasonPage'
 import StatusHistoryPage from '../pages/StatusHistoryPage'
+import QRScanner from '../pages/QRScanner'
+import Cam from '../pages/Cam'
 
 const Stack = createNativeStackNavigator()
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='loading' screenOptions={{headerShown:false}}>
+      <Stack.Navigator initialRouteName='open' screenOptions={{headerShown:false}}>
+        <Stack.Screen name='open' component={Cam}/>
         <Stack.Screen name='loading' component={LoadingPage}/>
         <Stack.Screen name='login' component={LoginPage}/>
+        <Stack.Screen name='qrscanner' component={QRScanner}/>
         <Stack.Screen name='firstLogin' component={FirstLoginPage}/>
         <Stack.Screen name='forgotPassword' component={ForgotPasswordPage}/>
         <Stack.Screen name='dashboard' component={Dashboard}/>
