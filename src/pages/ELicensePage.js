@@ -9,13 +9,14 @@ const ELicensePage = () =>
 { const Navigation= useNavigation();
   const route = useRoute();
   const url = route.params?.urlx;
+  const officerID = route.params?.pid;
   console.log(url.image); 
   console.log(url);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
 
 const blkCard = () =>{
-  Navigation.navigate("reason")
+  Navigation.navigate("reason",{pid:officerID,nic:url.nic})
   toggleModal(false);
 };
 

@@ -6,9 +6,12 @@ import CustomTextField from "../components/customTextField";
 import CustomButton from "../components/customButton";
 import CustomSmallButton from "../components/customSmallButton";
 import { checkdriver } from "../api/apis";
+import { useRoute } from "@react-navigation/native";
 
 const FingerprintPage = () => {
   const Navigation = useNavigation();
+  const route = useRoute();
+  const officerID = route.params?.pid;
   const [isModalVisible, setModalVisible] = useState(false);
   const [nic, setNic] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
@@ -18,7 +21,7 @@ const FingerprintPage = () => {
   };
 
   const camera = () => {
-    Navigation.navigate("open");
+    Navigation.navigate("open",{pid:officerID});
   };
 
   const closeErrorModal = () => {
@@ -31,7 +34,7 @@ const FingerprintPage = () => {
       setIsErrorModalVisible(true);
       console.log(url);
     } else {
-      Navigation.navigate("e-license", { urlx: url });
+      Navigation.navigate("e-license", { urlx: url,pid: officerID });
       console.log("Checking NIC details:", nic);
       toggleModal();
     }

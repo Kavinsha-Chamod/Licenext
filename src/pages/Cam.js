@@ -1,11 +1,18 @@
 import React from 'react';
 import { View,StyleSheet,Text } from 'react-native';
 import QRScanner from './QRScanner'; // Adjust the path accordingly
+import { useNavigation } from "@react-navigation/native";
+import { checkdriver } from "../api/apis";
+import { useRoute } from "@react-navigation/native";
 
 const Cam = () => {
-  const handleScanned = ({ type, data }) => {
+  const Navigation = useNavigation();
+  const route = useRoute();
+  const officerID = route.params?.pid;
+  const handleScanned = async ({ type, data }) => {
     console.log(`Scanned QR code of type ${type} with data: ${data}`);
-    // Handle the scanned data as needed
+    var url = await checkdriver(data);
+    Navigation.navigate("e-license", { urlx: url, pid:officerID });
   };
 
   return (

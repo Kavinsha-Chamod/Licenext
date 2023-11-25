@@ -1,12 +1,19 @@
 import { StyleSheet, Text, View, Image,TextInput } from "react-native";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import CustomTextField from "../components/customTextField";
 import CustomSmallButton from "../components/customSmallButton";
-
+import { useNavigation, useRoute } from "@react-navigation/native";
+import route from "color-convert/route";
 const ReasonPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [Location, setLocation] = useState('');
-
+  const route = useRoute();
+  const officerID = route.params?.pid;
+  const nic=route.params?.nic;
+  //setInputValue(officerID+" , "+nic);
+ useEffect(()=>{
+  setInputValue(officerID+" , "+nic);
+ },[]);
   return (
     <View style={styles.Container}>
       <View>

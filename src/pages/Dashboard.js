@@ -16,7 +16,7 @@ const Dashboard = () => {
   const route = useRoute();
   const officerID = route.params?.usernamey;
   const handleLicense = () => {
-    Navigation.navigate("fingerprint");
+    Navigation.navigate("fingerprint",{pid:officerID});
   };
   //------------------------------------------
 
