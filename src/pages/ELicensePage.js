@@ -2,17 +2,21 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import React, {useState} from 'react'
 import CustomSmallButton from '../components/customSmallButton'
 import CustomCancelButton from '../components/customCancelButton';
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import Modal from "react-native-modal";
 
 const ELicensePage = () => 
-{
+{ const Navigation= useNavigation();
   const route = useRoute();
   const url = route.params?.urlx;
   console.log(url.image); 
   console.log(url);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
+
+const blkCard = () =>{
+  Navigation.navigate("reason")
+};
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -42,7 +46,7 @@ const ELicensePage = () =>
         </Text>
       </View>
       <View style={styles.btnblk}>
-        <CustomSmallButton buttonText={"Block Card"} buttonFunction={""}/>
+        <CustomSmallButton buttonText={"Block Card"} buttonFunction={blkCard}/>
         <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleCancel}/>
       </View>
     </View>
