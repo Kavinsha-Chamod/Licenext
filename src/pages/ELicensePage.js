@@ -16,6 +16,7 @@ const ELicensePage = () =>
 
 const blkCard = () =>{
   Navigation.navigate("reason")
+  toggleModal(false);
 };
 
   const toggleModal = () => {

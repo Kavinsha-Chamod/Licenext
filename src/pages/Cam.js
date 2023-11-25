@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,StyleSheet } from 'react-native';
+import { View,StyleSheet,Text } from 'react-native';
 import QRScanner from './QRScanner'; // Adjust the path accordingly
 
 const Cam = () => {
@@ -9,8 +9,13 @@ const Cam = () => {
   };
 
   return (
+    <View>
+      <View>
+        <Text style={styles.text}>SCAN</Text>
+      </View>
     <View style={styles.container}>
       <QRScanner style={styles.container} onScanned={handleScanned} />
+    </View>
     </View>
   );
 };
@@ -18,8 +23,18 @@ const Cam = () => {
 export default Cam;
 const styles = StyleSheet.create({
   container: {
-    flex:1,
-    width: 80,
-    height: 75,
+  
+    width: 300,
+    height:350,
+    left:40,
+    top:150,
+    backgroundColor:"#F6F6F6",
+  },
+  text: {
+    fontFamily: "Poppins",
+    fontWeight: "bold",
+    fontSize: 20,
+    top:120,
+    left:160,
   },
 });

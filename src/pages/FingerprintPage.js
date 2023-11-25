@@ -1,29 +1,23 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
 import CustomButton from "../components/customButton";
 import CustomSmallButton from "../components/customSmallButton";
-import {checkdriver} from "../api/apis";
+import { checkdriver } from "../api/apis";
 
 const FingerprintPage = () => {
   const Navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [nic, setNic] = useState("");
   const [isErrorModalVisible, setIsErrorModalVisible] = useState(false);
-  
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const camera = () =>{
+  const camera = () => {
     Navigation.navigate("open");
   };
 
@@ -32,20 +26,15 @@ const FingerprintPage = () => {
   };
 
   const verifyNIC = async () => {
-   
     var url = await checkdriver(nic);
-    if(url==="user not existing in system")
-    {
+    if (url === "user not existing in system") {
       setIsErrorModalVisible(true);
       console.log(url);
+    } else {
+      Navigation.navigate("e-license", { urlx: url });
+      console.log("Checking NIC details:", nic);
+      toggleModal();
     }
-    else
-    {
-    Navigation.navigate("e-license",{urlx:url});
-    console.log("Checking NIC details:", nic);
-    toggleModal();
-     }
-   
   };
 
   const renderModalContent = () => (
@@ -66,6 +55,22 @@ const FingerprintPage = () => {
       <View style={styles.btnCheck}>
         <CustomButton buttonText={"Check"} buttonFunction={verifyNIC} />
       </View>
+      <View>
+        <Modal isVisible={isErrorModalVisible}>
+          <View style={styles.alertContainer}>
+            <Text style={styles.errorMsg}>
+              {"\n"}           ERROR !{"\n"}
+              <Text style={styles.errormsg}>Invalid NIC Number</Text>
+            </Text>
+            <View style={styles.msgOK}>
+              <CustomSmallButton
+                buttonText={"Ok"}
+                buttonFunction={closeErrorModal}
+              />
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 
@@ -85,16 +90,16 @@ const FingerprintPage = () => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>
-          Scan using Fingerprint and Unlock {"\n"}E -
+          Scan using QR Code and Unlock {"\n"}E -
           <Text style={styles.text1}>Driving License</Text> Information
         </Text>
       </View>
       <View>
         <TouchableOpacity onPress={camera}>
-        <Image
-          source={require("../assets/images/FPicon.png")}
-          style={styles.image}
-        />
+          <Image
+            source={require("../assets/images/qrIcon.png")}
+            style={styles.image}
+          />
         </TouchableOpacity>
       </View>
       <View>
@@ -109,21 +114,6 @@ const FingerprintPage = () => {
       >
         {renderModalContent()}
       </Modal>
-      <View>
-        <Modal isVisible={isErrorModalVisible}>
-          <View style={styles.alertContainer}>
-            <Text style={styles.errorMsg}>
-              {"\n"}            ERROR !{"\n"}
-              <Text style={styles.errormsg}>Invalid NIC Number</Text>
-            </Text><View style={styles.msgOK}>
-            <CustomSmallButton
-              buttonText={"Ok"}
-              buttonFunction={closeErrorModal}
-            />
-            </View>
-          </View>
-        </Modal>
-      </View>
     </View>
   );
 };
@@ -166,7 +156,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Poppins",
-    fontWeight: "bold",
     fontSize: 16,
   },
   text1: {
@@ -226,27 +215,27 @@ const styles = StyleSheet.create({
   textField: {
     bottom: 60,
   },
-  btnCheck:{
-bottom:35
+  btnCheck: {
+    bottom: 35,
   },
   alertContainer: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#D9D9D9",
-    height:160,
-    borderRadius:40,
+    height: 160,
+    borderRadius: 40,
   },
   errorMsg: {
     fontFamily: "Poppins",
     alignItems: "center",
-    fontSize:18,
-    bottom:13,
-    color:"red"
+    fontSize: 18,
+    bottom: 13,
+    color: "red",
   },
   msgOK: {
-    bottom:5,
+    bottom: 5,
   },
   errormsg: {
-color:"black"
-  }
+    color: "black",
+  },
 });
