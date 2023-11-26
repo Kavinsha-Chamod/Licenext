@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
 import React, {useEffect, useState} from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import CustomSmallButton from '../components/customSmallButton'
 import CustomCancelButton from '../components/customCancelButton';
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -51,6 +51,11 @@ const blkCard = () =>{
   const handleCancel = () => {
     setModalVisible(!isModalVisible);
   };
+
+  const statusHistory = () => {
+    Navigation.navigate("historyPage");
+  }
+
 
   const renderModalContent = () => (
     <View style={styles.modalContainer}>
@@ -131,6 +136,11 @@ const blkCard = () =>{
       </Modal>
       </View>
       </View>
+      <View style={styles.statusHistory}>
+        <TouchableOpacity onPress={statusHistory}>
+        <Text style={styles.statusHistoryTxt}>Check Status History</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -194,8 +204,8 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   textContainer: {
-    top: 250,
-    right:120,
+    top: 255,
+    right:72,
   },
   text: {
     fontFamily: "Poppins",
@@ -205,7 +215,7 @@ const styles = StyleSheet.create({
   btn:{
     flexDirection: "row",
     alignItems:"center",
-    top:260,
+    top:290,
   },
   modaltext1: {
     fontFamily: "Poppins",
@@ -231,5 +241,13 @@ const styles = StyleSheet.create({
   },
   unblkColor: {
     color:"red",
-  }
+  },
+  statusHistory: {
+   top:190,
+   right:93
+  },
+  statusHistoryTxt: {
+    fontFamily:"Poppins",
+   color:"#0C4271",
+  },
 })

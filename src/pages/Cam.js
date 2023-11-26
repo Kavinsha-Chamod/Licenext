@@ -1,6 +1,6 @@
 import React from 'react';
 import { View,StyleSheet,Text } from 'react-native';
-import QRScanner from './QRScanner'; // Adjust the path accordingly
+import QRScanner from './QRScanner'; 
 import { useNavigation } from "@react-navigation/native";
 import { checkdriver } from "../api/apis";
 import { useRoute } from "@react-navigation/native";
