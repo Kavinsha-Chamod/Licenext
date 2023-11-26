@@ -9,7 +9,7 @@ const LoadingPage = () => {
   useEffect(() => {
     const asyncOperation = async () => {
       await new Promise((reslove) => setTimeout(reslove, 3000));
-      setIsLoading(false); 
+      setIsLoading(false);
       Navigation.navigate("login");
     };
     asyncOperation();

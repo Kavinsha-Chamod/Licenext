@@ -16,7 +16,7 @@ const Dashboard = () => {
   const route = useRoute();
   const officerID = route.params?.usernamey;
   const handleLicense = () => {
-    Navigation.navigate("fingerprint",{pid:officerID});
+    Navigation.navigate("fingerprint", { pid: officerID });
   };
   //------------------------------------------
 
@@ -170,8 +170,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     left: 170,
     top: 15,
-    color: 'black',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    color: "black",
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 5,
   },
