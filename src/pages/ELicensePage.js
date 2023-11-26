@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import CustomSmallButton from '../components/customSmallButton'
 import CustomCancelButton from '../components/customCancelButton';
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -10,11 +10,24 @@ const ELicensePage = () =>
   const route = useRoute();
   const url = route.params?.urlx;
   const officerID = route.params?.pid;
+  const [validity,setvalidity]=useState("");
   console.log(url.image); 
   console.log(url);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
-
+if(url.validity === "true")
+{
+  useEffect(
+    ()=>
+    {setvalidity("Unblocked");},
+    []); 
+}
+else if(url.validity === "false")
+{
+  useEffect(()=>
+  {setvalidity = ("Blocked");},
+  []);
+}
 const blkCard = () =>{
   Navigation.navigate("reason",{pid:officerID,nic:url.nic})
   toggleModal(false);
@@ -96,7 +109,7 @@ const blkCard = () =>{
       />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.text}>Status -{url.validity}</Text>
+        <Text style={styles.text}>Status -{validity}</Text>
       </View>
       <View style={styles.btn}>
         <CustomSmallButton style={styles.btnCheck} buttonText={"Block Card"} buttonFunction={verifyButton} onPress={toggleModal}/>

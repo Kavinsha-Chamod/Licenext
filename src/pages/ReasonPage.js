@@ -3,6 +3,7 @@ import React,{useEffect, useState} from "react";
 import CustomTextField from "../components/customTextField";
 import CustomSmallButton from "../components/customSmallButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { addcomment,changeValidity } from "../api/apis";
 import route from "color-convert/route";
 const ReasonPage = () => {
   const [inputValue, setInputValue] = useState('');
@@ -14,6 +15,21 @@ const ReasonPage = () => {
  useEffect(()=>{
   setInputValue(officerID+" , "+nic);
  },[]);
+ 
+ const handleSave = async()=>
+ {
+   const commentstatus = addcomment(officerID,nic,inputValue,Location);
+   const validitystatus = changeValidity(nic,"false");
+   if(commentstatus !== "" && validitystatus !== "")
+   {
+      console.log("reason added successfully");
+   }
+   else
+   {
+      console.log("somthing went wrong");
+   }
+ }
+
   return (
     <View style={styles.Container}>
       <View>
@@ -50,7 +66,7 @@ const ReasonPage = () => {
         />
       </View>
       <View style={styles.btn}>
-        <CustomSmallButton style={styles.btnSave} buttonText={"Save"}/>
+        <CustomSmallButton style={styles.btnSave} buttonText={"Save"} buttonFunction={handleSave}/>
       </View>
     </View>
   );

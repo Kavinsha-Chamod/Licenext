@@ -1,9 +1,9 @@
 import axios from 'axios';
 //import { useNavigation } from "@react-navigation/native";
-
+    const conStr="http://192.168.43.181:5000"
     const login = async (username, password) => {
       try {
-        const response = await axios.post('http://192.168.43.181:5000/login', {
+        const response = await axios.post(`${conStr}/login`, {
           username: username,
           password: password,
         });
@@ -28,7 +28,7 @@ const firstregister = async (usernamex,passwordx,emailx) =>
   }
   try
   {
-    const response = await axios.put(`http://192.168.43.181:5000/update`, updatedData);
+    const response = await axios.put(`${conStr}/update`, updatedData);
     if (response.status === 200) {
       console.log('User details updated successfully:', response.data);
     } else {
@@ -44,7 +44,7 @@ const firstregister = async (usernamex,passwordx,emailx) =>
 const checkdriver = async (id) =>
 {
   try {
-    const response = await axios.post('http://192.168.43.181:5000/check', {
+    const response = await axios.post(`${conStr}/check`, {
       nic:id,
     });
     console.log('Login response:', response.data);
@@ -55,7 +55,41 @@ const checkdriver = async (id) =>
     throw error;
   }
 }
+// adding comments for fines
+const addcomment = async (pidx,nicx,commentx,locationx) =>
+{
+  try
+  {const response = await axios.post(`${conStr}/comment`, {
+    nic: nicx,
+    pid: pidx,
+    comment: commentx,
+    location: locationx
+  });
+    return response;}
+  catch(error)
+  {
+    console.log(error);
+     return error;
+  }
+
+}
+//---- to change validity------
+const changeValidity = async(nicx,validityx) =>
+{ 
+  try
+  {
+    const response = await axios.put(`${conStr}/validity`,{
+      nic:nicx,
+      validity:validityx
+    });
+    return response;
+  }
+  catch(error)
+  {
+     return error;
+  }
+}
 
 
-export {login,firstregister,checkdriver}
+export {login,firstregister,checkdriver,addcomment,changeValidity}
 
