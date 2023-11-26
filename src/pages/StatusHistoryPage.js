@@ -1,9 +1,52 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { driverHistory } from '../api/apis' //me
+import { useRoute } from '@react-navigation/native'
 
 const StatusHistoryPage = () => {
+
+const route= useRoute(); //me
+const nicy= route.params?.nicx;
+const [data, setdata]=useState([])
+console.log(nicy);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  const retrieve = async (nic) => {
+    try {
+      const datax = await driverHistory(nic);
+      console.log(datax);
+      setdata(datax);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  retrieve(nicy);
+}, []);
+
+
+console.log("ssssssss" + data);
+
   return (
     <View style={styles.Container}>
+
+<View>
+        {Array.isArray(data) && data.length > 0 ? (
+          data.map((item) => (
+            <View key={item._id}>
+              <Text>{item.pid}</Text>
+              <Text>{item.comment}</Text>
+              <Text>{item.date}</Text>
+              <Text>{item.location}</Text>
+            </View>
+          ))
+        ) : (
+          <Text>No data available</Text>
+        )}
+      </View>
+      
       <View>
         <Image
           source={require("../assets/images/LogoSmall.png")}
@@ -36,8 +79,8 @@ const StatusHistoryPage = () => {
       </View>
       <View style={styles.line}></View>
     </View>
-  )
-}
+  );
+};
 
 export default StatusHistoryPage
 

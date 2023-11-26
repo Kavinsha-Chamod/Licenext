@@ -54,7 +54,7 @@ const blkCard = () =>{
   };
 
   const statusHistory = () => {
-    Navigation.navigate("historyPage");
+    Navigation.navigate("historyPage",{nicx:url.nic});
   }
 
 

@@ -18,6 +18,7 @@ import axios from 'axios';
     //Register
 //shashika
 //first login register
+//--------------------------------
 const firstregister = async (usernamex,passwordx,emailx) =>
 {
   const updatedData=
@@ -89,7 +90,19 @@ const changeValidity = async(nicx,validityx) =>
      return error;
   }
 }
+//-----to retrive driver history-----
+const driverHistory = async (nicx) => {
+  try {
+    const response = await axios.get(`${conStr}/getReasons/${nicx}`);
 
+    // Assuming your data is in response.data
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    // You might want to handle errors differently based on your application needs.
+    throw error;
+  }
+};
 
-export {login,firstregister,checkdriver,addcomment,changeValidity}
+export {login,firstregister,checkdriver,addcomment,changeValidity,driverHistory}
 

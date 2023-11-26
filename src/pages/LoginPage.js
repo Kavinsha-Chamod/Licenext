@@ -22,7 +22,7 @@ const LoginPage = () => {
   const handleLogin = async () => {
     const lastNineChars = password.slice(-9);
     var answer = await login(username, password);
-
+     
     if (answer === "go to home" && lastNineChars === "@slpolice") {
       Navigation.navigate("firstLogin", {
         usernamex: username,
