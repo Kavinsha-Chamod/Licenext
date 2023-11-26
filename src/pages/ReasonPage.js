@@ -14,9 +14,9 @@ const ReasonPage = () => {
   const image=route.params?.image;
   const Navigation = useNavigation();
   //setInputValue(officerID+" , "+nic);
- useEffect(()=>{
-  setInputValue(officerID+" , "+nic);
- },[]);
+//  useEffect(()=>{
+//   setInputValue(officerID+" , "+nic);
+//  },[]);
  
  const handleSave = async()=>
  {
@@ -30,7 +30,8 @@ const ReasonPage = () => {
    if(commentstatus !== "" && validitystatus !== "")
    {
       console.log("reason added successfully");
-      Navigation.navigate("e-license",{urlx: url, pid: officerID});
+      changeValidity(url.nic,"false");
+      Navigation.navigate("e-license",{urlx: url, pid: officerID,validity:"Blocked"});
    }
    else
    {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 //import { useNavigation } from "@react-navigation/native";
-    const conStr="http://192.168.8.155:5000"
+    const conStr="http://192.168.43.181:5000"
     const login = async (username, password) => {
       try {
         const response = await axios.post(`${conStr}/login`, {
@@ -104,5 +104,21 @@ const driverHistory = async (nicx) => {
   }
 };
 
-export {login,firstregister,checkdriver,addcomment,changeValidity,driverHistory}
+const deleteComments = async (nicx) =>
+{
+  try
+  {
+    const response = await axios.delete(`${conStr}/delete/${nicx}`);
+    console.log(response.data);
+    return response.data;
+  }
+  catch(error)
+  {
+    console.log(error);
+  }
+
+
+};
+
+export {login,firstregister,checkdriver,addcomment,changeValidity,driverHistory,deleteComments}
 

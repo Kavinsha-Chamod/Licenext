@@ -4,17 +4,27 @@ import CustomSmallButton from '../components/customSmallButton'
 import CustomCancelButton from '../components/customCancelButton';
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Modal from "react-native-modal";
+import { deleteComments,changeValidity} from '../api/apis';
 
 const ELicensePage = () => 
 { const Navigation= useNavigation();
   const route = useRoute();
   const url = route.params?.urlx;
+  const val = route.params?.validity;
   const officerID = route.params?.pid;
   const [validity, setvalidity]=useState("");
   console.log(url.image); 
   console.log(url);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
+  const [isButtonDisabled, setisButtonDisabled]= useState(false);
+  const convertion = () => {
+    
+    useEffect(()=>{
+      setvalidity(val);
+    },[val]);
+
+
 if(url.validity === "true")
 {
   useEffect(
@@ -29,6 +39,24 @@ else if(url.validity === "false")
    {setvalidity("Blocked");},
    []);
 }
+  }
+// useEffect(()=>{
+
+   convertion();
+
+// },[]);
+const UnlockLicense = () =>
+{
+ 
+  deleteComments(url.nic);
+  changeValidity(url.nic,"true");
+  setvalidity("Unblocked");
+  handleBlkCancel(false);
+
+//  convertion();
+}
+
+
 const blkCard = () =>{
   Navigation.navigate("reason",{pid:officerID,nic:url.nic,image:url.image})
   toggleModal(false);
@@ -85,7 +113,7 @@ const blkCard = () =>{
         </Text>
       </View>
       <View style={styles.btnblk}>
-        <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={""}/>
+        <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={UnlockLicense}/>
         <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleBlkCancel}/>
       </View>
     </View>
@@ -130,7 +158,7 @@ const blkCard = () =>{
         {renderModalContent()}
       </Modal>
       <View>
-      <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={UnblockButton} onPress={toggleModal}/>
+      <CustomSmallButton disabled={isButtonDisabled} buttonText={"Unblock Card"} buttonFunction={UnblockButton} onPress={toggleModal}/>
       <Modal
         isVisible={isModalVisible1}
         onBackdropPress={toggleModal1}
