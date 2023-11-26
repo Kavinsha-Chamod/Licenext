@@ -11,6 +11,8 @@ const ReasonPage = () => {
   const route = useRoute();
   const officerID = route.params?.pid;
   const nic=route.params?.nic;
+  const image=route.params?.image;
+  const Navigation = useNavigation();
   //setInputValue(officerID+" , "+nic);
  useEffect(()=>{
   setInputValue(officerID+" , "+nic);
@@ -20,9 +22,15 @@ const ReasonPage = () => {
  {
    const commentstatus = addcomment(officerID,nic,inputValue,Location);
    const validitystatus = changeValidity(nic,"false");
+   const url=
+   {nic:nic,
+    validity:"false",
+    image:image
+   }
    if(commentstatus !== "" && validitystatus !== "")
    {
       console.log("reason added successfully");
+      Navigation.navigate("e-license",{urlx: url, pid: officerID});
    }
    else
    {

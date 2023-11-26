@@ -10,7 +10,7 @@ const ELicensePage = () =>
   const route = useRoute();
   const url = route.params?.urlx;
   const officerID = route.params?.pid;
-  const [validity,setvalidity]=useState("");
+  const [validity, setvalidity]=useState("");
   console.log(url.image); 
   console.log(url);
   const [isModalVisible, setModalVisible] = useState(false);
@@ -24,12 +24,13 @@ if(url.validity === "true")
 }
 else if(url.validity === "false")
 {
-  useEffect(()=>
-  {setvalidity = ("Blocked");},
-  []);
+  useEffect(
+   ()=>
+   {setvalidity("Blocked");},
+   []);
 }
 const blkCard = () =>{
-  Navigation.navigate("reason",{pid:officerID,nic:url.nic})
+  Navigation.navigate("reason",{pid:officerID,nic:url.nic,image:url.image})
   toggleModal(false);
 };
 
