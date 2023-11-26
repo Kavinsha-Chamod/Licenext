@@ -52,6 +52,9 @@ const blkCard = () =>{
   const handleCancel = () => {
     setModalVisible(!isModalVisible);
   };
+  const handleBlkCancel = () => {
+    setModalVisible1(!isModalVisible1);
+  };
 
   const statusHistory = () => {
     Navigation.navigate("historyPage",{nicx:url.nic});
@@ -83,7 +86,7 @@ const blkCard = () =>{
       </View>
       <View style={styles.btnblk}>
         <CustomSmallButton buttonText={"Unblock Card"} buttonFunction={""}/>
-        <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleCancel}/>
+        <CustomCancelButton buttonText={"Cancel"} buttonFunction={handleBlkCancel}/>
       </View>
     </View>
   );

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { driverHistory } from '../api/apis' //me
 import { useRoute } from '@react-navigation/native'
@@ -31,22 +31,28 @@ console.log("ssssssss" + data);
 
   return (
     <View style={styles.Container}>
-
-<View>
+      <View style={styles.newPwd}>
+        <Image
+          source={require("../assets/images/ellipseD.png")}
+          style={styles.imageD}
+        />
+      </View>
+      <View style={styles.container}>
+    <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollViewContainer}>
         {Array.isArray(data) && data.length > 0 ? (
           data.map((item) => (
-            <View key={item._id}>
-              <Text>{item.pid}</Text>
-              <Text>{item.comment}</Text>
-              <Text>{item.date}</Text>
-              <Text>{item.location}</Text>
+            <View style={styles.details} key={item._id}>
+              <Text style={styles.reason}>{item.comment}</Text>
+              <Text style={styles.officerId}>Officer Id - {item.pid}</Text>
+              <Text style={styles.officerId}>Location - {item.location}</Text>
+              <Text style={styles.officerId}>Date and Time - {item.date}</Text>
             </View>
           ))
         ) : (
           <Text>No data available</Text>
         )}
+      </ScrollView>
       </View>
-      
       <View>
         <Image
           source={require("../assets/images/LogoSmall.png")}
@@ -59,25 +65,6 @@ console.log("ssssssss" + data);
           style={styles.logo}
         />
       </View>
-      <View style={styles.dateTimeContainer}>
-        <Text style={styles.dateTime}>
-          DATE {"\n"}
-          TIME A.M/P.M
-        </Text>
-      </View>
-      <View style={styles.details}>
-        <Text style={styles.reason}>REASON {"\n"}
-        <Text style={styles.officerId}>Officer Id - {"\n"}
-        Location -</Text>
-        </Text>
-      </View>
-      <View style={styles.newPwd}>
-        <Image
-          source={require("../assets/images/ellipseD.png")}
-          style={styles.imageD}
-        />
-      </View>
-      <View style={styles.line}></View>
     </View>
   );
 };
@@ -91,12 +78,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F6F6F6",
   },
+  container: {
+    top:50,
+  },
+  scrollView: {
+    height: 200,
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
   smallLogoImage: {
     position: "absolute",
     width: 100,
     height: 50,
     resizeMode: "contain",
-    bottom: 210,
+    bottom:670,
     left: 70,
   },
   logo: {
@@ -125,28 +122,17 @@ const styles = StyleSheet.create({
     top: 520,
     left: 50,
   },
-  dateTimeContainer: {
-    bottom:85,
-    right:120
-  },
-  dateTime: {
-  fontWeight:"bold",
-  fontSize:12,
-  },
-  line: {
-    width: 3,
-    height: 80,
-    backgroundColor: "#192655",
-    bottom: 170,
-    right:55
-  },
   details: {
     bottom:105,
   },
   reason: {
-    fontWeight:"bold"
+    fontWeight:"bold",
+    fontSize:18,
+    marginTop:15,
   },
   officerId: {
-    fontWeight:"normal"
+    fontWeight:"normal",
+    fontSize:16,
+    marginTop: 2,
   }
 })
