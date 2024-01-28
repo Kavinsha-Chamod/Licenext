@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
-import { driverHistory } from "../api/apis"; //me
+import { driverHistory } from "../api/apis"; 
 import { useRoute } from "@react-navigation/native";
 
 const StatusHistoryPage = () => {
-  const route = useRoute(); //me
+  const route = useRoute(); 
   const nicy = route.params?.nicx;
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState([]); 
   console.log(nicy);
   const [loading, setLoading] = useState(true);
 

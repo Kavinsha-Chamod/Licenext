@@ -4,7 +4,9 @@ import CustomTextField from "../components/customTextField";
 import CustomSmallButton from "../components/customSmallButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { addcomment, changeValidity } from "../api/apis";
-import route from "color-convert/route";
+
+
+
 const ReasonPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [Location, setLocation] = useState("");
@@ -13,15 +15,13 @@ const ReasonPage = () => {
   const nic = route.params?.nic;
   const image = route.params?.image;
   const Navigation = useNavigation();
-  //setInputValue(officerID+" , "+nic);
-  //  useEffect(()=>{
-  //   setInputValue(officerID+" , "+nic);
-  //  },[]);
+
 
   const handleSave = async () => {
     const commentstatus = addcomment(officerID, nic, inputValue, Location);
     const validitystatus = changeValidity(nic, "false");
     const url = { nic: nic, validity: "false", image: image };
+    
     if (commentstatus !== "" && validitystatus !== "") {
       console.log("reason added successfully");
       changeValidity(url.nic, "false");
@@ -44,7 +44,7 @@ const ReasonPage = () => {
         />
       </View>
       <View style={styles.Pwd}>
-        <Image
+        <Image 
           source={require("../assets/images/reason.png")}
           style={styles.logo}
         />

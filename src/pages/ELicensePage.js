@@ -10,7 +10,7 @@ const ELicensePage = () =>
 { const Navigation= useNavigation();
   const route = useRoute();
   const url = route.params?.urlx;
-  const val = route.params?.validity;
+  const val = route.params?.validity; 
   const officerID = route.params?.pid;
   const [validity, setvalidity]=useState("");
   console.log(url.image); 

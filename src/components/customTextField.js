@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { View, TextInput, Text } from "react-native";
 import StyleSheet from "react-native-media-query";
-import * as Animatable from "react-native-animatable";
+
 
 const CustomTextField = ({
   placeholder,

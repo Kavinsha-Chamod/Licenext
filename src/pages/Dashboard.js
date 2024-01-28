@@ -18,7 +18,7 @@ const Dashboard = () => {
   const handleLicense = () => {
     Navigation.navigate("fingerprint", { pid: officerID });
   };
-  //------------------------------------------
+  //-----------------------------------------
 
   const [currentTime, setCurrentTime] = useState(moment().format("HH:mm"));
 

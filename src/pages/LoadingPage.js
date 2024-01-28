@@ -37,7 +37,7 @@ const LoadingPage = () => {
         </View>
       ) : (
         <View style={styles.contentContainer}>
-          {/* Your main content goes here */}
+          {}
         </View>
       )}
     </View>

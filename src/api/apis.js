@@ -1,6 +1,6 @@
 import axios from 'axios';
 //import { useNavigation } from "@react-navigation/native";
-    const conStr="http://192.168.8.155:5000"
+    const conStr="http://192.168.43.174:5000"
     const login = async (username, password) => {
       try {
         const response = await axios.post(`${conStr}/login`, {
@@ -10,15 +10,12 @@ import axios from 'axios';
         console.log('Login response:', response.data);
         return response.data;
       } catch (error) {
-        // Handle errors
         console.error('Error during login:', error);
         throw error;
       }
     };
-    //Register
-//shashika
+
 //first login register
-//--------------------------------
 const firstregister = async (usernamex,passwordx,emailx) =>
 {
   const updatedData=
@@ -51,7 +48,6 @@ const checkdriver = async (id) =>
     console.log('Login response:', response.data);
     return response.data;
   } catch (error) {
-    // Handle errors
     console.error(error);
     throw error;
   }
@@ -94,12 +90,9 @@ const changeValidity = async(nicx,validityx) =>
 const driverHistory = async (nicx) => {
   try {
     const response = await axios.get(`${conStr}/getReasons/${nicx}`);
-
-    // Assuming your data is in response.data
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
-    // You might want to handle errors differently based on your application needs.
     throw error;
   }
 };

@@ -15,6 +15,7 @@ const Cam = () => {
     Navigation.navigate("e-license", { urlx: url, pid: officerID });
   };
 
+  
   return (
     <View>
       <View>
