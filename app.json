@@ -4,22 +4,27 @@
     "slug": "Licenext",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/LogoSmall.png",
+    "icon": "./assets/Splash.png",
     "userInterfaceStyle": "dark",
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "your.bundle.identifier",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Your camera description"
+      }
     },
     "android": {
+      "permissions": ["CAMERA"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/LogoSmall.png",
+        "foregroundImage": "./assets/Splash.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/LogoSmall.png"
+      "favicon": "./assets/Splash.png"
     }
   }
 }
