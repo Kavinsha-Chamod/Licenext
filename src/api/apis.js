@@ -1,6 +1,6 @@
 import axios from 'axios';
 //import { useNavigation } from "@react-navigation/native";
-    const conStr="http://192.168.43.181:5000"
+    const conStr="http://192.168.43.182:5000"
     const login = async (username, password) => {
       try {
         const response = await axios.post(`${conStr}/login`, {

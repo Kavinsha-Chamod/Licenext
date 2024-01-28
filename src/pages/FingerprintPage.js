@@ -34,7 +34,7 @@ const FingerprintPage = () => {
       setIsErrorModalVisible(true);
       console.log(url);
     } else {
-      Navigation.navigate("e-license", { urlx: url,pid: officerID });
+      Navigation.navigate("e-license", { urlx: url,pid: officerID,dnic: nic});
       console.log("Checking NIC details:", nic);
       toggleModal();
     }

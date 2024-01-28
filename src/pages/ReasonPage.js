@@ -5,6 +5,7 @@ import CustomSmallButton from "../components/customSmallButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { addcomment,changeValidity } from "../api/apis";
 import route from "color-convert/route";
+import { checkdriver } from "../api/apis"
 const ReasonPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [Location, setLocation] = useState('');
@@ -17,7 +18,6 @@ const ReasonPage = () => {
 //  useEffect(()=>{
 //   setInputValue(officerID+" , "+nic);
 //  },[]);
- 
  const handleSave = async()=>
  {
    const commentstatus = addcomment(officerID,nic,inputValue,Location);
@@ -31,7 +31,7 @@ const ReasonPage = () => {
    {
       console.log("reason added successfully");
       changeValidity(url.nic,"false");
-      Navigation.navigate("e-license",{urlx: url, pid: officerID,validity:"Blocked"});
+      Navigation.navigate("e-license",{urlx: url, pid: officerID,validity:false});
    }
    else
    {

@@ -21,17 +21,17 @@ const FirstLoginPage = () => {
     const lastNineChars = password.slice(-9);
     if(cpassword !== currentPassword)
     {
-      //--Kavinsha
+      
       console.log("current password is not correct");
     }
     else if( password !== confirmPassword)
     {
-      //--kavinsha
+      
       console.log("passwords are not matching");
     }
     else if(lastNineChars === "@slpolice")
     {
-      //--kavinsha
+      
       console.log("please change last 9 charcters in password this password is not compatibal with system");
     }
     else if(cpassword === currentPassword && password === confirmPassword && lastNineChars !== "@slpolice")

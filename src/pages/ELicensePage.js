@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import CustomSmallButton from '../components/customSmallButton'
 import CustomCancelButton from '../components/customCancelButton';
+import { checkdriver } from "../api/apis"
 import { useNavigation, useRoute } from "@react-navigation/native";
 import Modal from "react-native-modal";
 import { deleteComments,changeValidity} from '../api/apis';
@@ -9,8 +10,8 @@ import { deleteComments,changeValidity} from '../api/apis';
 const ELicensePage = () => 
 { const Navigation= useNavigation();
   const route = useRoute();
-  const url = route.params?.urlx;
-  const val = route.params?.validity;
+  let url = route.params?.urlx;
+  let val = route.params?.validity;
   const officerID = route.params?.pid;
   const [validity, setvalidity]=useState("");
   console.log(url.image); 
@@ -18,33 +19,32 @@ const ELicensePage = () =>
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible1, setModalVisible1] = useState(false);
   const [isButtonDisabled, setisButtonDisabled]= useState(false);
-  const convertion = () => {
-    
-    useEffect(()=>{
-      setvalidity(val);
-    },[val]);
+  
+  useEffect(()=>{
 
+  convertion(); 
+  
+  },[url.validity]);
+
+  
+  const convertion = () => {
 
 if(url.validity === "true")
 {
-  useEffect(
-    ()=>
-    {setvalidity("Unblocked");},
-    []); 
+     setvalidity("Unblocked");
 }
-else if(url.validity === "false")
+else if(url.validity === "false" )
 {
-  useEffect(
-   ()=>
-   {setvalidity("Blocked");},
-   []);
+    setvalidity("Blocked");
 }
   }
-// useEffect(()=>{
 
-   convertion();
+  // useEffect(()=>
+  // {
+  //  convertion();
+  // },
+  // [val]);  
 
-// },[]);
 const UnlockLicense = () =>
 {
  
@@ -52,14 +52,14 @@ const UnlockLicense = () =>
   changeValidity(url.nic,"true");
   setvalidity("Unblocked");
   handleBlkCancel(false);
-
-//  convertion();
+  url.validity = true;
 }
 
 
 const blkCard = () =>{
   Navigation.navigate("reason",{pid:officerID,nic:url.nic,image:url.image})
   toggleModal(false);
+//  convertion();
 };
 
   const toggleModal = () => {
