@@ -9,14 +9,27 @@ import {
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/customButton";
+import { useRoute } from "@react-navigation/native";
 
 const ForgotPasswordPage = () => {
   const Navigation = useNavigation();
-  const [email, setEmail] = useState("");
-
+  const route = useRoute();
+  const [OTPP, setOTP] = useState("");
+  const [email,setemail] = useState("");
+  const username =  route.params?.usernamex;
+  const OTP = route.params?.OTPx;
   const handleVerify = () => {
-    Navigation.navigate("login");
     
+    if(OTPP == OTP){
+    Navigation.navigate("passwordrestpage",{usernamex:username});
+    }
+    else{
+
+      //Kavinsha
+      console.log("OTP is not correct");
+      
+    }
+
   };
   return (
     <View style={styles.Container}>
@@ -52,7 +65,7 @@ const ForgotPasswordPage = () => {
         </Text>
       </View>
       <View style={styles.CodeNum}>
-        <TextInput style={styles.rectangle} />
+        <TextInput style={styles.rectangle} onChangeText={(text) => setOTP(text)} />
         <TextInput style={styles.rectangle} />
         <TextInput style={styles.rectangle} />
         <TextInput style={styles.rectangle} />

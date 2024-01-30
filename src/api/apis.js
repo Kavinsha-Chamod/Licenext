@@ -119,6 +119,13 @@ const deleteComments = async (nicx) =>
 
 
 };
+const mailing = async (pidx) =>
+{
+  const responce = await axios.post(`${conStr}/mailing`,
+  {pid : pidx});
+  console.log(responce.data.OTP);
+  return responce.data.OTP;
+};
 
-export {login,firstregister,checkdriver,addcomment,changeValidity,driverHistory,deleteComments}
+export {login,firstregister,checkdriver,addcomment,changeValidity,driverHistory,deleteComments,mailing}
 

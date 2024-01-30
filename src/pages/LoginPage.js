@@ -9,7 +9,7 @@ import {
 import { CheckBox } from "react-native-elements";
 import CustomButton from "../components/customButton";
 import CustomSmallButton from "../components/customSmallButton";
-import { login } from "../api/apis";
+import { login,mailing } from "../api/apis";
 import Modal from "react-native-modal";
 
 const LoginPage = () => {
@@ -51,8 +51,9 @@ const LoginPage = () => {
     setRememberMe(!rememberMe);
   };
 
-  const handleResetPassword = () => {
-    Navigation.navigate("forgotPassword");
+  const handleResetPassword = async () => {
+    const OTP= await mailing(username);
+    Navigation.navigate("forgotPassword",{usernamex: username,OTPx : OTP});
   };
   const closeErrorModal = () => {
     setIsErrorModalVisible(false);

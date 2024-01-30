@@ -13,7 +13,7 @@ import ReasonPage from '../pages/ReasonPage'
 import StatusHistoryPage from '../pages/StatusHistoryPage'
 import QRScanner from '../pages/QRScanner'
 import Cam from '../pages/Cam'
-
+import PasswordResetPage  from '../pages/PasswordResetPage'
 const Stack = createNativeStackNavigator()
 const AppNavigator = () => {
   return (
@@ -30,6 +30,7 @@ const AppNavigator = () => {
         <Stack.Screen name='e-license' component={ELicensePage}/>
         <Stack.Screen name="reason" component={ReasonPage}/>
         <Stack.Screen name="historyPage" component={StatusHistoryPage}/>
+        <Stack.Screen name="passwordrestpage" component={PasswordResetPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
