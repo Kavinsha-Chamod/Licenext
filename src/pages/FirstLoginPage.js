@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomButton from "../components/customButton";
 import CustomTextField from "../components/customTextField";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
-import { firstregister } from '../api/apis';
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
+import { firstregister } from "../api/apis";
 import { useRoute } from "@react-navigation/native";
 
 const FirstLoginPage = () => {
@@ -28,26 +31,25 @@ const FirstLoginPage = () => {
     {
       
       console.log("passwords are not matching");
+    } else if (lastNineChars === "@slpolice") {
+      console.log(
+        "please change last 9 charcters in password this password is not compatibal with system"
+      );
+    } else if (
+      cpassword === currentPassword &&
+      password === confirmPassword &&
+      lastNineChars !== "@slpolice"
+    ) {
+      Navigation.navigate("dashboard", { usernamey: username });
+      firstregister(username, password, email);
+      console.log("username", username);
+      console.log("Email:", email);
+      console.log("CurrentPassword:", currentPassword);
+      console.log("Password:", password);
+      console.log("you have successfully updated your account");
+    } else {
+      console.log("Unknown error occured");
     }
-    else if(lastNineChars === "@slpolice")
-    {
-      
-      console.log("please change last 9 charcters in password this password is not compatibal with system");
-    }
-    else if(cpassword === currentPassword && password === confirmPassword && lastNineChars !== "@slpolice")
-      {
-    Navigation.navigate("dashboard",{usernamey:username});
-    firstregister(username,password,email);
-    console.log("username", username);
-    console.log("Email:", email);
-    console.log("CurrentPassword:", currentPassword);
-    console.log("Password:", password);
-    console.log("you have successfully updated your account");
-      }
-      else
-      {
-        console.log("Unknown error occured");
-      }
   };
   return (
     <View style={styles.container}>
@@ -123,13 +125,13 @@ const FirstLoginPage = () => {
         />
       </View>
       <View style={styles.btnContainer}>
-      <CustomButton buttonText={"Login"} buttonFunction={handleLogin}/>
+        <CustomButton buttonText={"Login"} buttonFunction={handleLogin} />
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default FirstLoginPage
+export default FirstLoginPage;
 
 const styles = StyleSheet.create({
   container: {
@@ -153,34 +155,34 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   smallLogoImage: {
-    position:'absolute',
+    position: "absolute",
     width: 100,
     height: 50,
     resizeMode: "contain",
-    bottom:120,
-    left:70,
+    bottom: 120,
+    left: 70,
   },
   newPwd: {
-    flex:1,
-    position:'absolute',
+    flex: 1,
+    position: "absolute",
     width: 100,
     height: 50,
     resizeMode: "contain",
-    top:120,
-    left:90,
+    top: 120,
+    left: 90,
   },
-  imageD:{
-    flex:1,
-    position:'absolute',
-    top:520,
-    left:50,
+  imageD: {
+    flex: 1,
+    position: "absolute",
+    top: 520,
+    left: 50,
   },
   EmailContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     top: 30,
-    padding:1
+    padding: 1,
   },
   Image: {
     width: widthPercentageToDP(7),
@@ -194,4 +196,4 @@ const styles = StyleSheet.create({
   btnContainer: {
     top: 50,
   },
-})
+});

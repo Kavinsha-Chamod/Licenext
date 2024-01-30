@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image,TextInput } from "react-native";
-import React,{useEffect, useState} from "react";
+import { StyleSheet, Text, View, Image, TextInput } from "react-native";
+import React, { useEffect, useState } from "react";
 import CustomTextField from "../components/customTextField";
 import CustomSmallButton from "../components/customSmallButton";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -7,12 +7,12 @@ import { addcomment,changeValidity } from "../api/apis";
 import route from "color-convert/route";
 import { checkdriver } from "../api/apis"
 const ReasonPage = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [Location, setLocation] = useState('');
+  const [inputValue, setInputValue] = useState("");
+  const [Location, setLocation] = useState("");
   const route = useRoute();
   const officerID = route.params?.pid;
-  const nic=route.params?.nic;
-  const image=route.params?.image;
+  const nic = route.params?.nic;
+  const image = route.params?.image;
   const Navigation = useNavigation();
   //setInputValue(officerID+" , "+nic);
 //  useEffect(()=>{
@@ -36,8 +36,8 @@ const ReasonPage = () => {
    else
    {
       console.log("somthing went wrong");
-   }
- }
+    }
+  };
 
   return (
     <View style={styles.Container}>
@@ -48,7 +48,7 @@ const ReasonPage = () => {
         />
       </View>
       <View style={styles.Pwd}>
-        <Image
+        <Image 
           source={require("../assets/images/reason.png")}
           style={styles.logo}
         />
@@ -61,21 +61,25 @@ const ReasonPage = () => {
       </View>
       <View>
         <CustomTextField
-        placeholder={"Enter the Reason"}
-        value={inputValue}
-        onChangeText={(text) => setInputValue(text)}
-        height={200}
+          placeholder={"Enter the Reason"}
+          value={inputValue}
+          onChangeText={(text) => setInputValue(text)}
+          height={200}
         />
       </View>
       <View>
         <CustomTextField
-        placeholder={"Enter the Location"}
-        value={Location}
-        onChangeText={(text) => setLocation(text)}
+          placeholder={"Enter the Location"}
+          value={Location}
+          onChangeText={(text) => setLocation(text)}
         />
       </View>
       <View style={styles.btn}>
-        <CustomSmallButton style={styles.btnSave} buttonText={"Save"} buttonFunction={handleSave}/>
+        <CustomSmallButton
+          style={styles.btnSave}
+          buttonText={"Save"}
+          buttonFunction={handleSave}
+        />
       </View>
     </View>
   );
@@ -147,14 +151,14 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    borderColor: 'gray',
+    borderColor: "gray",
     borderWidth: 1,
     paddingHorizontal: 10,
   },
-  btn:{
+  btn: {
     flexDirection: "row",
-    alignItems:"center",
-    top:10,
-    left:80,
+    alignItems: "center",
+    top: 10,
+    left: 80,
   },
 });

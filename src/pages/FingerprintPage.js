@@ -19,7 +19,7 @@ const FingerprintPage = () => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-
+  
   const camera = () => {
     Navigation.navigate("open",{pid:officerID});
   };

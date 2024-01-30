@@ -9,7 +9,7 @@ const LoadingPage = () => {
   useEffect(() => {
     const asyncOperation = async () => {
       await new Promise((reslove) => setTimeout(reslove, 3000));
-      setIsLoading(false); 
+      setIsLoading(false);
       Navigation.navigate("login");
     };
     asyncOperation();
@@ -37,7 +37,7 @@ const LoadingPage = () => {
         </View>
       ) : (
         <View style={styles.contentContainer}>
-          {/* Your main content goes here */}
+          {}
         </View>
       )}
     </View>

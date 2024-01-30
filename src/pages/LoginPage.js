@@ -2,10 +2,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import CustomTextField from "../components/customTextField";
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen";
+import {heightPercentageToDP,widthPercentageToDP } from "react-native-responsive-screen";
 import { CheckBox } from "react-native-elements";
 import CustomButton from "../components/customButton";
 import CustomSmallButton from "../components/customSmallButton";
